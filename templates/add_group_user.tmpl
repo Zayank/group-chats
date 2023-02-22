@@ -1,0 +1,33 @@
+
+    <script>
+    $(document).ready(function() {
+        $("#login").click(function(){
+            if($("#user_id").val() == "") {
+                alert("all fields are required");return;
+            }
+            
+            $.ajax({
+                type: "POST",
+                url:  location.origin + "/group/" + {{.groupuuid}} + "/user/" + $("#user_id").val(),
+                data: {},
+                cache: false,
+                success: function (result)
+                {
+                    window.location.href= location.origin + '/group/' + {{.groupuuid}};  
+                }
+            });
+            
+          });
+    });
+    </script>
+    <div class="log-form">
+  <h3 style="text-align:center;background-color:black;color:white;">Add User to Group</h3>
+  <div class="row"  style="margin:15px">
+  <form id="create-group-form">
+    <input id="user_id" name="user_id" placeholder="user id" style="border-radius: 8px;height:30px">
+  </form>
+  </div>
+  <div class="row"  style="margin:15px">
+    <button id="login" type="button" class="btn"  style="border-radius: 8px;">Add User</button>
+  </div>
+</div><!--end log form -->

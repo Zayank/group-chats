@@ -1,0 +1,355 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Open+Sans:400,300,600);
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lucida Console", "Courier New", monospace;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+@grey: #2a2a2a;
+@blue: #1fb5bf;
+
+.chat-menu {
+  float: right;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.group-logo {
+  background-image: url(../images/groupicon.png) !important;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-top: 5px;
+  background-size: 30px 30px;
+  margin-right: 10px;
+  background-repeat: no-repeat;
+}
+
+.group-logo-mini {
+  background-image: url(../images/groupicon.png) !important;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-top: 0px;
+  background-size: 20px 20px;
+  margin-right: 5px;
+  background-repeat: no-repeat;
+}
+
+.sb2:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid transparent;
+  border-right: 10px solid black;
+  border-top: 5px solid black;
+  border-bottom: 10px solid transparent;
+  left: -21px;
+  top: 6px;
+}
+
+.sb2:after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 7px solid transparent;
+  border-right: 7px solid #fff;
+  border-top: 7px solid #fff;
+  border-bottom: 7px solid transparent;
+  left: -11px;
+  top: 10px;
+}
+
+
+.user-logo-0 {
+  background-image: url(../images/usericon.png) !important;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-top: 0px;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+}
+
+.user-logo-1 {
+  background-image: url(../images/usericon2.png) !important;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-top: 0px;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+}
+
+.user-logo-2 {
+  background-image: url(../images/usericon3.png) !important;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-top: 0px;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+}
+
+.app-container {
+  border: solid grey;
+  height: 100%;
+  padding: 0px;
+  margin: 0px !important;
+  width: 100%;
+}
+
+.chats-container-header {
+  border-right: solid grey;
+  padding-right: 0px;
+  height: 100%;
+}
+
+.chats-container-label {
+  color: white;
+  background-color: black;
+  padding: 5px !important;
+  margin: 0px;
+}
+
+.group-container-header {
+  padding-left: 0px;
+  height: 100%;
+  background-color: #dfdfdf
+}
+
+.group-container-header-label {
+  color: white;
+  background-color: black;
+  padding: 5px !important;
+  margin: 0px;
+}
+
+.group-container {
+  height: 85%;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+}
+
+.messages-container {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+.send-message-form {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin-left: 5px
+}
+
+.sb5:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid black;
+  border-right: 10px solid transparent;
+  border-top: 5px solid black;
+  border-bottom: 10px solid transparent;
+  right: -21px;
+  top: 6px;
+}
+
+.sb5:after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 7px solid #fff;
+  border-right: 7px solid transparent;
+  border-top: 7px solid #fff;
+  border-bottom: 7px solid transparent;
+  right: -11px;
+  top: 10px;
+}
+
+.message-box {
+  border-radius: 10px;
+  margin-left: 55px;
+  margin-right: 55px;
+  margin-bottom: 15px;
+  color: black;
+  border: 1px solid black;
+  padding-left: 20px;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  font-weight: 900;
+  position: relative;
+  float: left;
+  background-color: white;
+}
+
+.block-view {
+  display: block;
+}
+
+.others-message {
+  left: 0;
+}
+
+.my-message {
+  right: 0;
+}
+
+.chat-box {
+  padding: 5px !important;
+  font-weight: bold;
+  font-size: 15px;
+  padding-top: 15px;
+  cursor: pointer;
+}
+
+.chat-box:hover {
+  background-color: rgb(226, 225, 225);
+}
+
+.current-chat-box {
+  background-color: #e6e6e6;
+  margin-top: 1px;
+  padding: 5px !important;
+  font-weight: bold;
+  font-size: 15px;
+  padding-top: 15px;
+  cursor: pointer;
+}
+
+.new-chat-box {
+  padding: 5px !important;
+  font-weight: bold;
+  font-size: 15px;
+  padding-top: 15px;
+  cursor: pointer;
+}
+
+.log-form {
+  width: 40%;
+  min-width: 320px;
+  max-width: 475px;
+  background: #fff;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: black;
+  border: 0.5px solid grey;
+  border-radius: 25px;
+
+  @media(max-width: 40em) {
+    width: 95%;
+    position: relative;
+    margin: 2.5% auto 0 auto;
+    left: 0%;
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    transform: translate(0%, 0%);
+  }
+
+  form {
+    display: block;
+    width: 100%;
+    padding: 2em;
+  }
+
+  h2 {
+    width: 100%;
+    color: lighten(@grey, 20%);
+    font-size: 1.35em;
+    display: block;
+    background: @grey;
+    width: 100%;
+    text-transform: uppercase;
+    padding: .75em 1em .75em 1.5em;
+    box-shadow: inset 0px 1px 1px fadeout(white, 95%);
+    border: 1px solid darken(@grey, 5%);
+    //text-shadow: 0px 1px 1px darken(@grey, 5%);
+    margin: 0;
+    font-weight: 200;
+  }
+
+
+
+  input {
+    display: block;
+    margin: auto auto;
+    width: 100%;
+    margin-bottom: 2em;
+    padding: .5em 0;
+    border: none;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 1.25em;
+    color: #757575;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .btn {
+    display: inline-block;
+    background: @blue;
+    border: 1px solid darken(@blue, 5%);
+    padding: .5em 2em;
+    color: white;
+    margin-right: .5em;
+    box-shadow: inset 0px 1px 0px fadeout(white, 80%);
+
+    &:hover {
+      background: lighten(@blue, 5%);
+    }
+
+    &:active {
+      background: @blue;
+      box-shadow: inset 0px 1px 1px fadeout(black, 90%);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .forgot {
+    color: lighten(@blue, 10%);
+    line-height: .5em;
+    position: relative;
+    top: 2.5em;
+    text-decoration: none;
+    font-size: .75em;
+    margin: 0;
+    padding: 0;
+    float: right;
+
+    &:hover {
+      color: darken(@blue, 5%);
+    }
+
+    &:active {}
+  }
+
+}

@@ -1,0 +1,39 @@
+<html> 
+<head> 
+    <title>Login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+    <script src="https://malsup.github.io/jquery.form.js"></script> 
+    <script>
+    $(document).ready(function() {
+        $("#login").click(function(){
+            if($("#name").val() == "" || $("#email").val() == "" || $("#password").val() == "") {
+                alert("all fields are required");return;
+            }
+            $.ajax({
+                type: "POST",
+                url: "register",
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    name: $("#name").val(),
+                    email: $("#email").val(),
+                    password: $("#password").val(),
+                }),
+                cache: false,
+                success: function (result)
+                {
+                    alert("Data: " + data + "\nStatus: " + status);
+                }
+            });
+            
+          });
+    });
+    </script>
+    </head>
+    <body>
+    <h1>Login</h1>
+    Name: <input id="name" name="name">
+    Email: <input id="email" name="email">
+    Password: <input id="password" name="password">
+    <button id="login">Login</button> 
+</body>
+</html>

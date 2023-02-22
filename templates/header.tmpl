@@ -1,0 +1,111 @@
+<html> 
+<head> 
+    <title>{{.roomName}}</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
+    <script src="https://malsup.github.io/jquery.form.js"></script> 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="../templates/assets/css/common.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.6/css/bootstrap-modal.css" integrity="sha512-/McvCinmK3R9FGlXhgOuEF4gMqRpK5u8ais4WJEX3utoNrVIM336ftao6YuuopZKaX3K3XtnWBUI5qfrHsHioQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.6/js/bootstrap-modal.js" integrity="sha512-Bp1SEH6unclxWdEeJvGQdSKlFarPwBjDVg5uwApgKLdrae0h+NKTcox+MqagH0Xl9dC1jgWdg66wFP4JXumrlw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+<script> 
+
+let counter = 0;
+usericons = {};
+$(document).ready(function () {
+
+    currentGroup = {{.groupuuid }} ? {{.groupuuid }} : "";
+
+    myArray = {{.conversations }} ? {{.conversations }} : [];
+    for (var j = 0; j < myArray.length; j++) {
+
+        applySpecialStyle = '';
+        applyFunction = '';
+        group_id = myArray[j].Id;
+        group_name = myArray[j].Name;
+
+        if (currentGroup == myArray[j].Id) {
+            applySpecialStyle = 'background-color:#e6e6e6;margin-top:1px;';
+        } else {
+            applyFunction = "onclick='window.location.href=`" + location.origin + "/group/" + group_id + "`'";
+
+        }
+
+        $('#chats').append("<div class='chat-box' id='" + myArray[j].Id + "' style='" + applySpecialStyle + "' " + applyFunction + " ><span><i class='group-logo-mini pull-left'></i>" + myArray[j].Name + "</span></div>");
+
+    }
+           
+});
+
+var sourceForConversations = new EventSource('/events/conversations');
+sourceForConversations.addEventListener('message', push_chat_to_top, false);
+function push_chat_to_top(e) {
+    arr = e.data.split("|");
+    count = $('#' + arr[0]).attr('data-new_messages');
+
+    if (currentGroup == arr[0]) {
+        count = 0;
+    } else if (isNaN(count) || count == '') {
+        count = 1;
+    } else {
+        count++;
+    }
+    applyFunction = "onclick='window.location.href=`" + arr[0] + "`'";
+    $('#' + arr[0]).remove();
+    $('#chats').prepend("<div id='" + arr[0] + "' class='new-chat-box' " + applyFunction + " data-new_messages= '" + count + "'><span><i class='group-logo-mini pull-left'></i>" + arr[1] + (count > 0 ? " (" + count + " new messages)" : "") + "</span></div>");
+
+}
+
+window.addEventListener('beforeunload', (event) => {
+    // Cancel the event as stated by the standard.
+    event.preventDefault();
+    // Chrome requires returnValue to be set.
+    sourceForConversations.close();
+    return;
+});
+
+</script> 
+
+
+</head>
+<body>
+<div class="container app-container">
+    <div class="row">
+        <div class="col-lg-3 chats-container-header">
+            <div class="row chats-container-label">
+                <div class="col-lg-10">
+                    <span class="h1">Chats</span>
+                </div>
+                <div class="col-lg-2">
+                    <span class="dropdown pull-right chat-menu-parent" style="position:relative">
+                        <a class="dropdown-toggle pull-right  chat-menu" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-ellipsis-v fa-3x" style="color:white" aria-hidden="true"></i>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#" onclick='window.location.href= location.origin + "/group/create-group"; return false;'>Create Group</a><br>
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <div id="chats">
+            </div>
+        </div>
+        <div class="col-lg-9 group-container-header">
