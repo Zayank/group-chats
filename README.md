@@ -1,7 +1,6 @@
 ## Configured with
 
 - [go-gorp](https://github.com/go-gorp/gorp): Go Relational Persistence
-- [jwt-go](https://github.com/golang-jwt/jwt): JSON Web Tokens (JWT) as middleware
 - [go-redis](https://github.com/go-redis/redis): Redis support for Go
 - Go Modules
 - Feature **PostgreSQL 12** with JSON/JSONB queries & trigger functions
