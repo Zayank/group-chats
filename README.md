@@ -47,7 +47,7 @@ $ go build -v
 ```
 $ ./group-chats
 ```
-## Credit
+## Reference
 
 https://github.com/gin-gonic/examples/tree/master/realtime-chat
 
